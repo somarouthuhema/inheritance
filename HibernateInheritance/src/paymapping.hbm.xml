@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.techouts.hibernate.pojos.Payment" table="payment" schema="hema1">
+		<id name="payId" column="payId">
+			<generator class="assigned" />
+		</id>
+		<property name="amount" column="amount"></property>
+		
+  
+  <joined-subclass name="com.techouts.hibernate.pojos.CreditCard" table="creditcard"> 
+    <key column="payId"></key>  
+  	<property name="cardType"></property>  
+  </joined-subclass>
+   
+  <joined-subclass name="com.techouts.hibernate.pojos.ChequePayment" table="cheque">
+    <key column="payId"></key>  
+    <property name="chequeType"></property>  
+  </joined-subclass>  
+	</class>
+</hibernate-mapping>
